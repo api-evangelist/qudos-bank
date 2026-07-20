@@ -1,0 +1,12 @@
+generated: '2026-07-20'
+method: generated
+source: openapi/qudos-bank-cds-banking-products-openapi.yml (public PRD operations)
+skills:
+- file: qudos-bank-list-products.md
+  name: List Qudos Bank products
+  api: openapi/qudos-bank-cds-banking-products-openapi.yml
+  operations: [listBankingProducts]
+- file: qudos-bank-get-product-detail.md
+  name: Get Qudos Bank product detail
+  api: openapi/qudos-bank-cds-banking-products-openapi.yml
+  operations: [getBankingProductDetail]

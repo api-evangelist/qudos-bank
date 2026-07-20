@@ -1,0 +1,26 @@
+generated: '2026-07-20'
+method: derived
+status: candidate
+source: openapi/qudos-bank-cds-banking-products-openapi.yml
+notes: >-
+  No official first-party MCP server is published by Qudos Bank. This is a
+  candidate tool surface derived from the two public, unauthenticated CDR
+  Product Reference Data operations Qudos actually exposes at
+  https://public.cdr.qudosbank.com.au/cds-au/v1/banking/products. Third-party
+  agent integrations exist in the wild (e.g. banksync.io) but are not official.
+server:
+  name: qudos-bank
+  transport: http
+  url: null
+tools:
+- name: list_banking_products
+  description: >-
+    List Qudos Bank's openly available banking products (transaction and savings
+    accounts, term deposits, credit cards, home and personal loans). Supports
+    product-category filtering and page/page-size pagination. No authentication.
+  source_operation: openapi/qudos-bank-cds-banking-products-openapi.yml#listBankingProducts
+- name: get_banking_product_detail
+  description: >-
+    Retrieve full detail for a single Qudos Bank product by productId, including
+    rates, fees, features, eligibility, constraints and bundles. No authentication.
+  source_operation: openapi/qudos-bank-cds-banking-products-openapi.yml#getBankingProductDetail

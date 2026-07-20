@@ -1,0 +1,26 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Qudos Bank CDR Product Reference Data API
+  version: 1.0.0
+extends: openapi/qudos-bank-cds-banking-products-openapi.yml
+actions:
+- target: $.info
+  update:
+    x-apievangelist-provider: qudos-bank
+    x-apievangelist-public-host: https://public.cdr.qudosbank.com.au/cds-au/v1
+    x-apievangelist-public-operations:
+    - listBankingProducts
+    - getBankingProductDetail
+    x-apievangelist-standard: Consumer Data Standards (AU) — CDR Banking
+    x-apievangelist-versioning: header (x-v request / x-min-v / x-v response)
+    x-apievangelist-auth: >-
+      Product Reference Data operations are public and unauthenticated. The
+      account, transaction, direct-debit, payment and payee operations in this
+      spec require CDR consumer data sharing authorization (FAPI 2.0 / OAuth2 /
+      OIDC over mutual TLS) and are not served on the public host.
+- target: $.servers
+  update:
+    x-apievangelist-note: >-
+      The spec ships an example MTLS server. The live public PRD base URL is
+      https://public.cdr.qudosbank.com.au/cds-au/v1 (confirmed HTTP 200 with an
+      x-v response header).

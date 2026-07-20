@@ -1,0 +1,28 @@
+generated: '2026-07-20'
+method: searched
+source: >-
+  https://consumerdatastandardsaustralia.github.io/standards/ +
+  openapi/qudos-bank-cds-banking-products-openapi.yml (info.version 1.36.0)
+versioning:
+  scheme: header
+  request_headers: [x-v, x-min-v]
+  response_header: x-v
+  live_products_version: 3
+  standard_version: 1.36.0
+  docs: https://consumerdatastandardsaustralia.github.io/standards/
+  note: >-
+    CDS uses per-endpoint version negotiation. Clients send x-v (desired version)
+    and optionally x-min-v (minimum acceptable); the server echoes the served
+    version in x-v. The live products endpoint currently serves x-v: 3.
+deprecation:
+  policy: >-
+    Endpoint versions are retired under the Data Standards Body change-management
+    and Future Dated Obligations process; superseded versions signal via x-min-v
+    and unsupported versions return HTTP 406 urn:au-cds:error:cds:header/unsupported-version.
+  sunset_header: false
+  docs: https://consumerdatastandardsaustralia.github.io/standards/#versioning
+sla:
+  url: null
+  note: No published API-level uptime SLA for the public PRD host.
+status_page: null
+deprecated_operations: []

@@ -1,0 +1,88 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/qudos-bank-cds-banking-products-openapi.yml (component schemas)
+root_entity: BankingProduct
+entities:
+- name: BankingProduct
+  schema: BankingProductV6
+  id_field: productId
+  summary: >-
+    A banking product currently on offer (list view). Fields: productId,
+    productCategory, name, description, brand/brandName, applicationUri,
+    isTailored, effectiveFrom/effectiveTo, lastUpdated, additionalInformation,
+    cardArt.
+- name: BankingProductDetail
+  schema: BankingProductDetailV7
+  id_field: productId
+  summary: >-
+    Full detail view (BankingProductV6 plus the child collections below),
+    returned by getBankingProductDetail.
+- name: BankingProductDepositRate
+  schema: BankingProductDepositRateV2
+- name: BankingProductLendingRate
+  schema: BankingProductLendingRateV3
+- name: BankingProductRateTier
+  schema: BankingProductRateTierV4
+- name: BankingProductFee
+  schema: BankingProductFeeV2
+- name: BankingProductDiscount
+  schema: BankingProductDiscountV2
+- name: BankingProductFeature
+  schema: BankingProductFeatureV4
+- name: BankingProductConstraint
+  schema: BankingProductConstraintV3
+- name: BankingProductEligibility
+  schema: BankingProductEligibilityV2
+- name: BankingProductBundle
+  schema: BankingProductBundle
+- name: BankingProductAdditionalInformation
+  schema: BankingProductAdditionalInformationV2
+relationships:
+- from: BankingProductDetail
+  to: BankingProductDepositRate
+  kind: has_many
+  via: depositRates
+- from: BankingProductDetail
+  to: BankingProductLendingRate
+  kind: has_many
+  via: lendingRates
+- from: BankingProductDetail
+  to: BankingProductFee
+  kind: has_many
+  via: fees
+- from: BankingProductDetail
+  to: BankingProductFeature
+  kind: has_many
+  via: features
+- from: BankingProductDetail
+  to: BankingProductConstraint
+  kind: has_many
+  via: constraints
+- from: BankingProductDetail
+  to: BankingProductEligibility
+  kind: has_many
+  via: eligibility
+- from: BankingProductDetail
+  to: BankingProductBundle
+  kind: has_many
+  via: bundles
+- from: BankingProductDetail
+  to: BankingProductInstalments
+  kind: has_one
+  via: instalments
+- from: BankingProduct
+  to: BankingProductAdditionalInformation
+  kind: has_one
+  via: additionalInformation
+- from: BankingProductDepositRate
+  to: BankingProductRateTier
+  kind: has_many
+  via: tiers
+- from: BankingProductLendingRate
+  to: BankingProductRateTier
+  kind: has_many
+  via: tiers
+notes: >-
+  Entity graph derived from CDS Banking Product Reference Data component schemas.
+  The two public operations are listBankingProducts (returns BankingProductV6[])
+  and getBankingProductDetail (returns BankingProductDetailV7).

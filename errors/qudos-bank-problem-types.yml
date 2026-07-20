@@ -1,0 +1,55 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/qudos-bank-cds-banking-products-openapi.yml (public PRD operations)
+format: cds-response-error-list-v2
+envelope:
+  field: errors
+  shape: '{ errors: [ { code, title, detail, meta? } ] }'
+  note: >-
+    Consumer Data Standards ResponseErrorListV2 envelope — not RFC 9457
+    application/problem+json. `code` carries a urn:au-cds:error:* URN.
+problems:
+- status: 400
+  code: urn:au-cds:error:cds:field/invalid
+  title: Invalid Field
+  source_operation: openapi/qudos-bank-cds-banking-products-openapi.yml#listBankingProducts
+- status: 400
+  code: urn:au-cds:error:cds:field/missing
+  title: Missing Required Field
+  source_operation: openapi/qudos-bank-cds-banking-products-openapi.yml#listBankingProducts
+- status: 400
+  code: urn:au-cds:error:cds:header/missing
+  title: Missing Required Header
+  source_operation: openapi/qudos-bank-cds-banking-products-openapi.yml#listBankingProducts
+- status: 400
+  code: urn:au-cds:error:cds:header/invalid-version
+  title: Invalid Version
+  source_operation: openapi/qudos-bank-cds-banking-products-openapi.yml#listBankingProducts
+- status: 400
+  code: urn:au-cds:error:cds:field/invalid-date-time
+  title: Invalid Date
+  source_operation: openapi/qudos-bank-cds-banking-products-openapi.yml#listBankingProducts
+- status: 400
+  code: urn:au-cds:error:cds:field/invalid-page-size
+  title: Invalid Page Size
+  source_operation: openapi/qudos-bank-cds-banking-products-openapi.yml#listBankingProducts
+- status: 404
+  code: urn:au-cds:error:cds:resource/unavailable
+  title: Unavailable Resource
+  detail: The requested productId is not currently available.
+  source_operation: openapi/qudos-bank-cds-banking-products-openapi.yml#getBankingProductDetail
+- status: 404
+  code: urn:au-cds:error:cds:resource/invalid
+  title: Invalid Resource
+  detail: The supplied productId is not a valid resource identifier.
+  source_operation: openapi/qudos-bank-cds-banking-products-openapi.yml#getBankingProductDetail
+- status: 406
+  code: urn:au-cds:error:cds:header/unsupported-version
+  title: Unsupported Version
+  detail: The requested x-v version is not supported by this endpoint.
+  source_operation: openapi/qudos-bank-cds-banking-products-openapi.yml#listBankingProducts
+- status: 422
+  code: urn:au-cds:error:cds:field/invalid-page
+  title: Invalid Page
+  detail: The requested page number is out of range for the result set.
+  source_operation: openapi/qudos-bank-cds-banking-products-openapi.yml#listBankingProducts

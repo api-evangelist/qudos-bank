@@ -1,0 +1,49 @@
+generated: '2026-07-20'
+method: searched
+source: >-
+  https://www.qudosbank.com.au/support/open-banking +
+  https://consumerdatastandardsaustralia.github.io/standards/ +
+  openapi/qudos-bank-cds-banking-products-openapi.yml
+standards:
+- id: cdr-consumer-data-standards-au
+  conforms: true
+  evidence: >-
+    Qudos Bank is a designated CDR data holder; its Product Reference Data API is
+    built in accordance with the Data Standards Body Consumer Data Standards and
+    is live at the CDS-standard path /cds-au/v1/banking/products.
+- id: cds-versioning
+  conforms: true
+  evidence: >-
+    Endpoint version negotiation via x-v request / x-min-v / x-v response headers;
+    live host returns x-v: 3 for the products endpoint.
+- id: cds-error-list-v2
+  conforms: true
+  evidence: >-
+    4xx responses use the CDS ResponseErrorListV2 envelope with urn:au-cds:error:*
+    error codes (see errors/qudos-bank-problem-types.yml).
+- id: fapi
+  conforms: true
+  evidence: >-
+    CDR consumer data sharing (the authenticated side of this API) operates under
+    the ACCC / Data Standards Body FAPI security profile; the public PRD subset is
+    unauthenticated by mandate.
+- id: oauth2
+  conforms: true
+  evidence: CDR data sharing uses OAuth 2.0 authorization (consumer data sharing side).
+- id: oidc
+  conforms: true
+  evidence: CDR data sharing uses OpenID Connect for identity (consumer data sharing side).
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: >-
+    Errors use the CDS ResponseErrorListV2 envelope (errors[] with code/title/detail/meta),
+    not application/problem+json.
+- id: mutual-tls
+  conforms: true
+  evidence: >-
+    The CDS spec's server is declared MTLS; CDR data recipient connections use
+    mutual TLS. The public PRD host is standard TLS, no client cert.
+compliance:
+  program: Consumer Data Right (CDR) — designated data holder
+  regulator: ACCC (Australian Competition and Consumer Commission) / OAIC
+  url: https://www.qudosbank.com.au/support/open-banking

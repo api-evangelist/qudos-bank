@@ -1,0 +1,44 @@
+generated: '2026-07-20'
+method: searched
+source: >-
+  https://www.qudosbank.com.au/support/open-banking +
+  https://consumerdatastandardsaustralia.github.io/standards/
+docs: https://www.qudosbank.com.au/support/open-banking
+summary:
+  types: [none, oauth2, openIdConnect, mutualTLS]
+  public_prd: unauthenticated
+  data_sharing: fapi-2.0
+surfaces:
+- name: Product Reference Data (PRD)
+  operations: [listBankingProducts, getBankingProductDetail]
+  auth: none
+  description: >-
+    Public, unauthenticated. No API key, token, or client certificate required.
+    Requests must send the x-v version header. Confirmed live returning HTTP 200
+    at https://public.cdr.qudosbank.com.au/cds-au/v1/banking/products.
+- name: CDR consumer data sharing
+  operations: [listBankingAccounts, getBankingAccountDetail, listBankingTransactions, getBankingBalance, listDirectDebits, listScheduledPayments, listBankingPayees]
+  auth: oauth2 + openIdConnect over mutualTLS (FAPI 2.0)
+  description: >-
+    The account/transaction/payments/payees operations require CDR consumer data
+    sharing authorization: an accredited data recipient (ACCC-accredited) obtains
+    the customer's consent via OAuth 2.0 authorization code flow with OpenID
+    Connect, PKCE/PAR, and mutual TLS client authentication under the Data
+    Standards Body FAPI security profile. Discovery and trust is brokered by the
+    ACCC CDR Register, not a per-holder /.well-known/openid-configuration.
+  register: https://consumerdatastandardsaustralia.github.io/register/
+schemes:
+- name: none-public-prd
+  type: none
+  applies_to: [listBankingProducts, getBankingProductDetail]
+- name: cdr-fapi
+  type: oauth2
+  flow: authorizationCode
+  profile: FAPI 2.0
+  transport: mutualTLS
+  applies_to: cdr-consumer-data-sharing
+notes: >-
+  The harvested OpenAPI declares no components.securitySchemes because the
+  public PRD subset is unauthenticated by CDR mandate; the FAPI-secured data
+  sharing surface is governed by the CDR Register and Data Standards rather than
+  inline OpenAPI security schemes.

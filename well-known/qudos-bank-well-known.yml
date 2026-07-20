@@ -1,0 +1,28 @@
+generated: '2026-07-20'
+method: searched
+source: live probes of /.well-known/* on the public CDR host and the corporate site
+host: https://public.cdr.qudosbank.com.au
+documents:
+- path: /.well-known/openid-configuration
+  status: 404
+- path: /.well-known/oauth-authorization-server
+  status: 404
+- path: /.well-known/security.txt
+  status: 404
+- path: /.well-known/api-catalog
+  status: 404
+- path: /.well-known/ai-plugin.json
+  status: 404
+notes: >-
+  The public Product Reference Data (PRD) host exposes only the unauthenticated
+  CDS banking endpoints (GET /cds-au/v1/banking/products[/{productId}]) and
+  publishes no /.well-known/ discovery surface. OIDC/OAuth authorization-server
+  metadata for CDR consumer data sharing is not served from this public host;
+  under the CDR ecosystem it is discovered via the ACCC CDR Register, not a
+  per-holder /.well-known/openid-configuration. No security.txt is published on
+  either the public CDR host or www.qudosbank.com.au (both /.well-known/security.txt
+  returned 404).
+also_probed:
+- host: https://www.qudosbank.com.au
+  path: /.well-known/security.txt
+  status: 404

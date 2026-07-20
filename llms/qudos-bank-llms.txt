@@ -1,0 +1,30 @@
+# Qudos Bank
+
+> Qudos Bank is an Australian customer-owned (mutual) bank, 100% customer-owned since 1959 and now operating as a division of Bank Australia Limited following its 2025 merger. As an Australian authorised deposit-taking institution (ADI) and a designated data holder under the Consumer Data Right (CDR / Open Banking), Qudos Bank exposes a public, unauthenticated Product Reference Data (PRD) API conforming to the Data Standards Body Consumer Data Standards, and supports authenticated CDR consumer data sharing with accredited data recipients under the ACCC / FAPI security profile.
+
+## APIs
+
+- [Qudos Bank CDR Product Reference Data API](https://www.qudosbank.com.au/support/open-banking): Public, unauthenticated Product Reference Data API required of every Australian ADI under the CDR. Live at GET https://public.cdr.qudosbank.com.au/cds-au/v1/banking/products and /products/{productId}. Returns Qudos Bank's openly available banking products with rates, fees, eligibility and features.
+
+## Specs
+
+- [OpenAPI (CDR Banking / Product Reference Data)](https://raw.githubusercontent.com/api-evangelist/qudos-bank/refs/heads/main/openapi/qudos-bank-cds-banking-products-openapi.yml): OpenAPI 3.0.3 description of the CDS Banking API surface (v1.36.0). Qudos publicly serves the two Product Reference Data operations; the account/transaction/payments operations require CDR consumer data sharing authorization.
+
+## Docs
+
+- [Open Banking at Qudos Bank](https://www.qudosbank.com.au/support/open-banking): How Qudos participates in the CDR, the public Product APIs, and how customers share data with accredited data recipients.
+- [Consumer Data Standards (Data Standards Body)](https://consumerdatastandardsaustralia.github.io/standards/): The normative Consumer Data Standards the Qudos API conforms to (endpoint shapes, headers, error codes, versioning).
+- [CDR Register Design Reference](https://consumerdatastandardsaustralia.github.io/register/): How accredited data recipients discover and connect to data holders like Qudos.
+
+## Artifacts
+
+- [Authentication profile](https://raw.githubusercontent.com/api-evangelist/qudos-bank/refs/heads/main/authentication/qudos-bank-authentication.yml)
+- [API conventions](https://raw.githubusercontent.com/api-evangelist/qudos-bank/refs/heads/main/conventions/qudos-bank-conventions.yml)
+- [Error / problem types](https://raw.githubusercontent.com/api-evangelist/qudos-bank/refs/heads/main/errors/qudos-bank-problem-types.yml)
+- [Lifecycle & versioning](https://raw.githubusercontent.com/api-evangelist/qudos-bank/refs/heads/main/lifecycle/qudos-bank-lifecycle.yml)
+- [Conformance](https://raw.githubusercontent.com/api-evangelist/qudos-bank/refs/heads/main/conformance/qudos-bank-conformance.yml)
+- [Data model](https://raw.githubusercontent.com/api-evangelist/qudos-bank/refs/heads/main/data-model/qudos-bank-data-model.yml)
+
+## Contact
+
+- Open Banking technical support: openbanking@qudosbank.com.au

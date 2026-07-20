@@ -1,0 +1,54 @@
+generated: '2026-07-20'
+method: derived
+source: >-
+  openapi/qudos-bank-cds-banking-products-openapi.yml + live response inspection
+  of https://public.cdr.qudosbank.com.au/cds-au/v1/banking/products
+standard: Consumer Data Standards (AU) — CDR Banking
+authentication:
+  style: none (public PRD); FAPI 2.0 OAuth2/OIDC over mTLS for consumer data sharing
+  ref: authentication/qudos-bank-authentication.yml
+versioning:
+  style: header
+  request: [x-v, x-min-v]
+  response: x-v
+  ref: lifecycle/qudos-bank-lifecycle.yml
+pagination:
+  style: page-number
+  params:
+    page: 1-based page number
+    page-size: records per page (default 25, max 1000 per CDS)
+  response_fields:
+    meta.totalRecords: total records across all pages
+    meta.totalPages: total number of pages
+    links.self: current page URL
+    links.first: first page URL
+    links.prev: previous page URL (omitted on first page)
+    links.next: next page URL (omitted on last page)
+    links.last: last page URL
+  observed: 'meta={totalRecords: 17, totalPages: 9} at page-size=2; links.self/next/last present'
+request_tracing:
+  header: x-fapi-interaction-id
+  behavior: >-
+    Echoed on the response (a new UUID is generated when the client does not
+    supply one). Observed on the live products response.
+filtering:
+  product-category: >-
+    Optional query param on listBankingProducts to restrict to a CDS product
+    category enum (e.g. TRANS_AND_SAVINGS_ACCOUNTS, TERM_DEPOSITS, CRED_AND_CHRG_CARDS,
+    RESIDENTIAL_MORTGAGES, PERS_LOANS).
+  effective: Optional query param to filter by product effective date window.
+  updated-since: Optional query param to return only products changed since a timestamp.
+idempotency:
+  supported: false
+  reason: Public PRD surface is read-only (GET); no state-changing operations, no idempotency key.
+metadata:
+  additionalInformation: >-
+    Products carry an additionalInformation object of overview/eligibility/fees/terms
+    URIs pointing back into www.qudosbank.com.au product pages.
+error_envelope:
+  shape: '{ errors: [ { code, title, detail, meta? } ] }'
+  format: cds-response-error-list-v2
+  ref: errors/qudos-bank-problem-types.yml
+rate_limiting:
+  signaled: false
+  note: No rate-limit headers observed on the public PRD host.
