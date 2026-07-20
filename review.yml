@@ -1,0 +1,84 @@
+aid: qudos-bank
+name: Qudos Bank
+review:
+  question: Does Qudos Bank expose a confirmed public API surface, and is it a bank-proprietary
+    contract or the shared Consumer Data Standards?
+  answer: true
+  date: '2026-07-20'
+  reviewer: API Evangelist
+  cdrPrdConfirmed: true
+  specProvenance: cds-standard
+  specProvenanceNote: |
+    The harvested OpenAPI (openapi/qudos-bank-cds-banking-products-openapi.yml) is
+    the shared Data Standards Body (DSB) Consumer Data Standards "CDR Banking API"
+    (OpenAPI 3.0.3, version 1.36.0, MIT licence), NOT a Qudos Bank-proprietary
+    contract. Qudos Bank's public Product Reference Data endpoint conforms to this
+    standard's GET /banking/products and GET /banking/products/{productId} paths.
+    No bank-specific/proprietary OpenAPI was found published by Qudos Bank.
+findings:
+  summary: |
+    Qudos Bank's only documented public, developer-facing API surface is the
+    Consumer Data Right (CDR / Open Banking) Product Reference Data (PRD) API that
+    every Australian ADI is required to expose. It was CONFIRMED LIVE: an
+    unauthenticated GET to
+    https://public.cdr.qudosbank.com.au/cds-au/v1/banking/products returned HTTP 200
+    with Content-Type application/json, an x-v: 3 response header, and a
+    data.products array (meta.totalRecords 17 across 4 pages; brand "Qudos Bank").
+    The product details endpoint /cds-au/v1/banking/products/{productId} follows the
+    same CDS path. Qudos Bank does NOT run a dedicated developer portal, a public
+    GitHub organisation, or an Up-style personal-banking developer API; its public
+    open-banking presence is an informational support page
+    (https://www.qudosbank.com.au/support/open-banking) directing technical queries
+    to openbanking@qudosbank.com.au. The broader authenticated CDR consumer data
+    surface (accounts, balances, transactions, direct debits, scheduled payments) is
+    not public: it requires ACCC-accredited data recipient (ADR) status and the CDR
+    security profile (OAuth2 / OIDC FAPI 1.0 Advanced with mutual TLS and PKCE) and
+    is therefore out of scope for open harvesting. Corporate note: Qudos Bank is a
+    customer-owned mutual bank (100% customer-owned since 1959) that merged with Bank
+    Australia in 2025 and now trades as a division of Bank Australia Limited
+    (ABN 21 087 651 607); the CDR PRD host remains on the qudosbank.com.au brand
+    domain.
+  transports:
+    - protocol: REST
+      scheme: https
+      baseURL: https://public.cdr.qudosbank.com.au/cds-au/v1/banking/products
+      documented: true
+      authenticated: false
+      note: Public CDR Product Reference Data. Confirmed HTTP 200 + JSON + x-v:3 header.
+    - protocol: REST
+      scheme: https
+      baseURL: https://public.cdr.qudosbank.com.au/cds-au/v1/banking
+      documented: true
+      authenticated: true
+      note: >-
+        Authenticated CDR consumer data (accounts/balances/transactions) governed by
+        the DSB CDS security profile - OAuth2 / OIDC FAPI 1.0 Advanced, mutual TLS,
+        PKCE - and gated behind ACCC ADR accreditation. Not publicly accessible.
+  authModel:
+    publicPrd: none (unauthenticated)
+    consumerData: OAuth2 / OIDC FAPI 1.0 Advanced + mTLS + PKCE (CDR ADR model)
+  endpointsConfirmed:
+    - GET https://public.cdr.qudosbank.com.au/cds-au/v1/banking/products
+    - GET https://public.cdr.qudosbank.com.au/cds-au/v1/banking/products/{productId}
+  developerPortal: none
+sources:
+  - url: https://www.qudosbank.com.au/support/open-banking
+    type: Documentation
+    note: Qudos Bank open banking support page; lists the two public product API URLs; no developer portal.
+  - url: https://public.cdr.qudosbank.com.au/cds-au/v1/banking/products
+    type: APIReference
+    note: Live PRD endpoint; probed HTTP 200, application/json, x-v:3, 17 products across 4 pages.
+  - url: https://consumerdatastandardsaustralia.github.io/standards/
+    type: Documentation
+    note: DSB Consumer Data Standards - the shared standard the PRD API conforms to.
+  - url: https://consumerdatastandardsaustralia.github.io/standards/includes/swagger/cds_banking.json
+    type: OpenAPI
+    note: Source of the harvested spec - DSB CDS "CDR Banking API" OpenAPI 3.0.3 v1.36.0 (shared standard, not bank-proprietary).
+actions:
+  openapiPath: openapi/qudos-bank-cds-banking-products-openapi.yml
+  openapiProvenance: cds-standard
+  apisYmlUpdated: true
+  reason: |
+    Captured the single confirmed public API surface (CDR PRD) with its live base
+    URL and harvested the shared DSB CDS Banking OpenAPI verbatim (converted JSON to
+    YAML, content unchanged) since no Qudos Bank-proprietary contract is published.

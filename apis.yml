@@ -1,0 +1,72 @@
+aid: qudos-bank
+url: https://raw.githubusercontent.com/api-evangelist/qudos-bank/refs/heads/main/apis.yml
+name: Qudos Bank
+kind: company
+description: Qudos Bank is an Australian customer-owned (mutual) bank that has been
+  100% customer-owned since 1959, serving members with everyday transaction and savings
+  accounts, term deposits, credit cards, home and personal loans, and offset accounts.
+  Following its 2025 merger it now operates as a division of Bank Australia Limited
+  (ABN 21 087 651 607, trading as Qudos Bank), one of the largest customer-owned banks
+  in the country. As an Australian authorised deposit-taking institution and a designated
+  data holder under the Consumer Data Right (CDR / Open Banking), Qudos Bank exposes
+  a public, unauthenticated Product Reference Data (PRD) API conforming to the Data
+  Standards Body Consumer Data Standards, and supports authenticated CDR consumer
+  data sharing with accredited data recipients under the ACCC / FAPI security profile.
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+tags:
+- Financial
+- Banks
+- Open Banking
+- CDR
+- Consumer Banking
+- Australia
+- Customer Owned
+- Mutual Bank
+- Product Reference Data
+created: '2026-07-20'
+modified: '2026-07-20'
+specificationVersion: '0.19'
+apis:
+- aid: qudos-bank:qudos-bank-cdr-product-reference-data-api
+  name: Qudos Bank CDR Product Reference Data API
+  tags:
+  - CDR
+  - Open Banking
+  - Product Reference Data
+  - Banking Products
+  - Public API
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://www.qudosbank.com.au/support/open-banking
+  baseURL: https://public.cdr.qudosbank.com.au/cds-au/v1/banking/products
+  properties:
+  - url: https://www.qudosbank.com.au/support/open-banking
+    type: Documentation
+  - url: https://consumerdatastandardsaustralia.github.io/standards/
+    type: APIReference
+  - url: openapi/qudos-bank-cds-banking-products-openapi.yml
+    type: OpenAPI
+  description: Public, unauthenticated Product Reference Data (PRD) API required of
+    every Australian ADI under the Consumer Data Right. Returns Qudos Bank's openly
+    available banking products (transaction and savings accounts, term deposits,
+    credit cards, home and personal loans) with rates, fees, eligibility, and features.
+    Confirmed live returning HTTP 200 JSON with an x-v response header (17 products,
+    4 pages) at the CDS-standard path GET /cds-au/v1/banking/products and
+    /cds-au/v1/banking/products/{productId}.
+common:
+- type: Website
+  url: https://www.qudosbank.com.au/
+- type: Documentation
+  url: https://www.qudosbank.com.au/support/open-banking
+- type: Blog
+  url: https://www.qudosbank.com.au/news-tools-tips/news-blog
+- type: TermsOfService
+  url: https://www.qudosbank.com.au/support/legal
+- type: PrivacyPolicy
+  url: https://www.qudosbank.com.au/support/legal/privacy
+- type: Support
+  url: https://www.qudosbank.com.au/contact-us
+- type: LinkedIn
+  url: https://www.linkedin.com/company/qudos-bank
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
