@@ -167,6 +167,8 @@ common:
   url: security/qudos-bank-domain-security.yml
 - type: Authentication
   url: authentication/qudos-bank-authentication.yml
+- type: OAuthScopes
+  url: scopes/qudos-bank-scopes.yml
 - type: Conventions
   url: conventions/qudos-bank-conventions.yml
 - type: ErrorCatalog

@@ -1,0 +1,53 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/qudos-bank-cds-banking-products-openapi.yml (per-operation x-scopes)
+docs: https://consumerdatastandardsaustralia.github.io/standards/#authorisation-scopes
+note: >-
+  The public Product Reference Data operations (listBankingProducts,
+  getBankingProductDetail) are unauthenticated and carry no scope. All other
+  CDR banking operations require an ACCC-accredited data recipient to hold the
+  scope shown, granted via the customer's CDR consent under the Data Standards
+  Body FAPI security profile (OAuth 2.0 authorization code + OIDC, PKCE/PAR,
+  mutual TLS). Scopes and their consumer-facing data-language descriptions are
+  standardized across all Australian ADIs by the Consumer Data Standards; they
+  are not Qudos-specific. Discovery/trust is brokered by the ACCC CDR Register,
+  not a per-holder /.well-known/openid-configuration.
+schemes:
+- name: cdr-fapi
+  type: oauth2
+  flow: authorizationCode
+  profile: FAPI 1.0 Advanced / FAPI 2.0
+  transport: mutualTLS
+  source: openapi/qudos-bank-cds-banking-products-openapi.yml
+  register: https://consumerdatastandardsaustralia.github.io/register/
+scopes:
+- scope: bank:accounts.basic:read
+  description: >-
+    Account name, type, and balance. Grants the basic banking account list and
+    balance surface.
+  operations: [listBankingAccounts, listBankingBalancesBulk, listBankingBalancesSpecificAccounts, getBankingBalance]
+  sources: [openapi/qudos-bank-cds-banking-products-openapi.yml]
+- scope: bank:accounts.detail:read
+  description: >-
+    Account numbers and features (account balance and details, including
+    account number, interest rates, fees, and features).
+  operations: [getBankingAccountDetail]
+  sources: [openapi/qudos-bank-cds-banking-products-openapi.yml]
+- scope: bank:transactions:read
+  description: >-
+    Transaction details, including incoming and outgoing transactions, amounts,
+    dates, descriptions, and other party details.
+  operations: [listBankingTransactions, getBankingTransactionDetail]
+  sources: [openapi/qudos-bank-cds-banking-products-openapi.yml]
+- scope: bank:payees:read
+  description: >-
+    Saved payees, including names and account/BSB or PayID details of the
+    member's saved payees.
+  operations: [listBankingPayees, getBankingPayeeDetail]
+  sources: [openapi/qudos-bank-cds-banking-products-openapi.yml]
+- scope: bank:regular_payments:read
+  description: >-
+    Direct debits and scheduled payments, including recurring-payment
+    arrangements and instalment plans.
+  operations: [listDirectDebits, listDirectDebitsBulk, listDirectDebitsSpecificAccounts, listScheduledPayments, listScheduledPaymentsBulk, listScheduledPaymentsSpecificAccounts, listInstalmentPlans, listInstalmentPlansBulk]
+  sources: [openapi/qudos-bank-cds-banking-products-openapi.yml]
