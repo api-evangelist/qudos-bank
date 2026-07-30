@@ -12,7 +12,19 @@ description: Qudos Bank is an Australian customer-owned (mutual) bank that has b
   a public, unauthenticated Product Reference Data (PRD) API conforming to the Data
   Standards Body Consumer Data Standards, and supports authenticated CDR consumer
   data sharing with accredited data recipients under the ACCC / FAPI security profile.
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/qudos-bank.png
 tags:
 - Financial
 - Banks
@@ -27,139 +39,104 @@ created: '2026-07-20'
 modified: '2026-07-21'
 specificationVersion: '0.19'
 apis:
-- aid: qudos-bank:qudos-bank-cdr-product-reference-data-api
-  name: Qudos Bank CDR Product Reference Data API
-  tags:
-  - CDR
-  - Open Banking
-  - Product Reference Data
-  - Banking Products
-  - Public API
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+- aid: qudos-bank:qudos-bank-banking-account-balances-api
+  name: Qudos Bank Banking Account Balances API
+  description: Banking Account Balance endpoints
   humanURL: https://www.qudosbank.com.au/support/open-banking
   baseURL: https://public.cdr.qudosbank.com.au/cds-au/v1/banking/products
-  properties:
-  - url: https://www.qudosbank.com.au/support/open-banking
-    type: Documentation
-  - url: https://consumerdatastandardsaustralia.github.io/standards/
-    type: APIReference
-  - url: openapi/qudos-bank-cds-banking-products-openapi.yml
-    type: OpenAPI
-  description: Public, unauthenticated Product Reference Data (PRD) API required of
-    every Australian ADI under the Consumer Data Right. Returns Qudos Bank's openly
-    available banking products (transaction and savings accounts, term deposits,
-    credit cards, home and personal loans) with rates, fees, eligibility, and features.
-    Confirmed live returning HTTP 200 JSON with an x-v response header (17 products,
-    4 pages) at the CDS-standard path GET /cds-au/v1/banking/products and
-    /cds-au/v1/banking/products/{productId}.
-- aid: qudos-bank:qudos-bank-cdr-accounts-balances-api
-  name: Qudos Bank CDR Accounts & Balances API
   tags:
-  - CDR
-  - Open Banking
-  - Accounts
-  - Balances
-  - Consumer Data
-  - Authorized API
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://www.qudosbank.com.au/support/open-banking
-  baseURL: https://public.cdr.qudosbank.com.au/cds-au/v1/banking/accounts
+  - Banking Account Balances
   properties:
-  - url: https://www.qudosbank.com.au/support/open-banking
-    type: Documentation
-  - url: https://consumerdatastandardsaustralia.github.io/standards/
-    type: APIReference
-  - url: openapi/qudos-bank-cds-banking-products-openapi.yml
-    type: OpenAPI
-  description: Consumer-authorized Consumer Data Right banking accounts surface that
-    every Australian ADI implements to the Data Standards Body Consumer Data Standards.
-    Covers Get Accounts (GET /cds-au/v1/banking/accounts), Get Account Detail
-    (/banking/accounts/{accountId}), Get Bulk Balances (/banking/accounts/balances)
-    and Get Account Balance (/banking/accounts/{accountId}/balance). Unlike the public
-    Product Reference Data API, these endpoints return a member's own account data
-    and are NOT publicly callable; access requires an ACCC-accredited data recipient
-    (ADR) acting on the customer's authorization under the CDR security profile
-    (OAuth2 / OIDC FAPI 1.0 Advanced with mutual TLS and PKCE).
-- aid: qudos-bank:qudos-bank-cdr-transactions-api
-  name: Qudos Bank CDR Transactions API
+  - type: OpenAPI
+    url: openapi/qudos-bank-banking-account-balances-api-openapi.yml
+  - type: Documentation
+    url: https://www.qudosbank.com.au/support/open-banking
+  - type: APIReference
+    url: https://consumerdatastandardsaustralia.github.io/standards/
+- aid: qudos-bank:qudos-bank-banking-account-direct-debits-api
+  name: Qudos Bank Banking Account Direct Debits API
+  description: Banking Account Direct Debit endpoints
+  humanURL: https://www.qudosbank.com.au/support/open-banking
+  baseURL: https://public.cdr.qudosbank.com.au/cds-au/v1/banking/products
   tags:
-  - CDR
-  - Open Banking
-  - Transactions
-  - Consumer Data
-  - Authorized API
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://www.qudosbank.com.au/support/open-banking
-  baseURL: 'https://public.cdr.qudosbank.com.au/cds-au/v1/banking/accounts/{accountId}/transactions'
+  - Banking Account Direct Debits
   properties:
-  - url: https://www.qudosbank.com.au/support/open-banking
-    type: Documentation
-  - url: https://consumerdatastandardsaustralia.github.io/standards/
-    type: APIReference
-  - url: openapi/qudos-bank-cds-banking-products-openapi.yml
-    type: OpenAPI
-  description: Consumer-authorized Consumer Data Right transactions surface implemented
-    by every Australian ADI to the Data Standards Body Consumer Data Standards. Covers
-    Get Transactions For Account (GET /cds-au/v1/banking/accounts/{accountId}/transactions)
-    and Get Transaction Detail (/banking/accounts/{accountId}/transactions/{transactionId}),
-    returning a member's own transaction history with amounts, descriptions, and
-    reference data. These endpoints require an ACCC-accredited data recipient acting
-    on the customer's authorization under the CDR security profile (OAuth2 / OIDC
-    FAPI 1.0 Advanced, mutual TLS, PKCE) and are not publicly callable.
-- aid: qudos-bank:qudos-bank-cdr-direct-debits-scheduled-payments-api
-  name: Qudos Bank CDR Direct Debits & Scheduled Payments API
+  - type: OpenAPI
+    url: openapi/qudos-bank-banking-account-direct-debits-api-openapi.yml
+  - type: Documentation
+    url: https://www.qudosbank.com.au/support/open-banking
+  - type: APIReference
+    url: https://consumerdatastandardsaustralia.github.io/standards/
+- aid: qudos-bank:qudos-bank-banking-account-scheduled-payments-api
+  name: Qudos Bank Banking Account Scheduled Payments API
+  description: Banking Account Scheduled Payment endpoints
+  humanURL: https://www.qudosbank.com.au/support/open-banking
+  baseURL: https://public.cdr.qudosbank.com.au/cds-au/v1/banking/products
   tags:
-  - CDR
-  - Open Banking
-  - Direct Debits
-  - Scheduled Payments
-  - Consumer Data
-  - Authorized API
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://www.qudosbank.com.au/support/open-banking
-  baseURL: https://public.cdr.qudosbank.com.au/cds-au/v1/banking/accounts/direct-debits
+  - Banking Account Scheduled Payments
   properties:
-  - url: https://www.qudosbank.com.au/support/open-banking
-    type: Documentation
-  - url: https://consumerdatastandardsaustralia.github.io/standards/
-    type: APIReference
-  - url: openapi/qudos-bank-cds-banking-products-openapi.yml
-    type: OpenAPI
-  description: Consumer-authorized Consumer Data Right direct debits and scheduled
-    payments surface implemented by every Australian ADI to the Data Standards Body
-    Consumer Data Standards. Covers Get Direct Debits For Account and Get Bulk Direct
-    Debits (/banking/accounts/{accountId}/direct-debits, /banking/accounts/direct-debits)
-    plus Get Scheduled Payments For Account and Get Bulk Scheduled Payments
-    (/banking/accounts/{accountId}/payments/scheduled, /banking/payments/scheduled).
-    These endpoints return a member's own recurring-payment arrangements and require
-    an ACCC-accredited data recipient acting on the customer's authorization under
-    the CDR security profile (OAuth2 / OIDC FAPI 1.0 Advanced, mutual TLS, PKCE);
-    they are not publicly callable.
-- aid: qudos-bank:qudos-bank-cdr-payees-api
-  name: Qudos Bank CDR Payees API
+  - type: OpenAPI
+    url: openapi/qudos-bank-banking-account-scheduled-payments-api-openapi.yml
+  - type: Documentation
+    url: https://www.qudosbank.com.au/support/open-banking
+  - type: APIReference
+    url: https://consumerdatastandardsaustralia.github.io/standards/
+- aid: qudos-bank:qudos-bank-banking-account-transactions-api
+  name: Qudos Bank Banking Account Transactions API
+  description: Banking Account Transaction endpoints
+  humanURL: https://www.qudosbank.com.au/support/open-banking
+  baseURL: https://public.cdr.qudosbank.com.au/cds-au/v1/banking/products
   tags:
-  - CDR
-  - Open Banking
-  - Payees
-  - Consumer Data
-  - Authorized API
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://www.qudosbank.com.au/support/open-banking
-  baseURL: https://public.cdr.qudosbank.com.au/cds-au/v1/banking/payees
+  - Banking Account Transactions
   properties:
-  - url: https://www.qudosbank.com.au/support/open-banking
-    type: Documentation
-  - url: https://consumerdatastandardsaustralia.github.io/standards/
-    type: APIReference
-  - url: openapi/qudos-bank-cds-banking-products-openapi.yml
-    type: OpenAPI
-  description: Consumer-authorized Consumer Data Right payees surface implemented by
-    every Australian ADI to the Data Standards Body Consumer Data Standards. Covers
-    Get Payees (GET /cds-au/v1/banking/payees) and Get Payee Detail
-    (/banking/payees/{payeeId}), returning a member's own saved payees and their
-    account/BSB or PayID details. These endpoints require an ACCC-accredited data
-    recipient acting on the customer's authorization under the CDR security profile
-    (OAuth2 / OIDC FAPI 1.0 Advanced, mutual TLS, PKCE) and are not publicly callable.
+  - type: OpenAPI
+    url: openapi/qudos-bank-banking-account-transactions-api-openapi.yml
+  - type: Documentation
+    url: https://www.qudosbank.com.au/support/open-banking
+  - type: APIReference
+    url: https://consumerdatastandardsaustralia.github.io/standards/
+- aid: qudos-bank:qudos-bank-banking-accounts-api
+  name: Qudos Bank Banking Accounts API
+  description: Banking Account endpoints
+  humanURL: https://www.qudosbank.com.au/support/open-banking
+  baseURL: https://public.cdr.qudosbank.com.au/cds-au/v1/banking/products
+  tags:
+  - Banking Accounts
+  properties:
+  - type: OpenAPI
+    url: openapi/qudos-bank-banking-accounts-api-openapi.yml
+  - type: Documentation
+    url: https://www.qudosbank.com.au/support/open-banking
+  - type: APIReference
+    url: https://consumerdatastandardsaustralia.github.io/standards/
+- aid: qudos-bank:qudos-bank-banking-payees-api
+  name: Qudos Bank Banking Payees API
+  description: Banking Payee endpoints
+  humanURL: https://www.qudosbank.com.au/support/open-banking
+  baseURL: https://public.cdr.qudosbank.com.au/cds-au/v1/banking/products
+  tags:
+  - Banking Payees
+  properties:
+  - type: OpenAPI
+    url: openapi/qudos-bank-banking-payees-api-openapi.yml
+  - type: Documentation
+    url: https://www.qudosbank.com.au/support/open-banking
+  - type: APIReference
+    url: https://consumerdatastandardsaustralia.github.io/standards/
+- aid: qudos-bank:qudos-bank-banking-products-api
+  name: Qudos Bank Banking Products API
+  description: Banking Product endpoints
+  humanURL: https://www.qudosbank.com.au/support/open-banking
+  baseURL: https://public.cdr.qudosbank.com.au/cds-au/v1/banking/products
+  tags:
+  - Banking Products
+  properties:
+  - type: OpenAPI
+    url: openapi/qudos-bank-banking-products-api-openapi.yml
+  - type: Documentation
+    url: https://www.qudosbank.com.au/support/open-banking
+  - type: APIReference
+    url: https://consumerdatastandardsaustralia.github.io/standards/
 common:
 - type: AgenticAccess
   url: agentic-access/qudos-bank-agentic-access.yml
