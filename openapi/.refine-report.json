@@ -1,0 +1,26 @@
+{
+  "provider": "qudos-bank",
+  "sources": [
+    "qudos-bank-banking-account-balances-api-openapi.yml",
+    "qudos-bank-banking-account-direct-debits-api-openapi.yml",
+    "qudos-bank-banking-account-scheduled-payments-api-openapi.yml",
+    "qudos-bank-banking-account-transactions-api-openapi.yml",
+    "qudos-bank-banking-accounts-api-openapi.yml",
+    "qudos-bank-banking-payees-api-openapi.yml",
+    "qudos-bank-banking-products-api-openapi.yml"
+  ],
+  "outputs": [
+    "qudos-bank-banking-account-balances-api-openapi.yml",
+    "qudos-bank-banking-account-direct-debits-api-openapi.yml",
+    "qudos-bank-banking-account-scheduled-payments-api-openapi.yml",
+    "qudos-bank-banking-account-transactions-api-openapi.yml",
+    "qudos-bank-banking-accounts-api-openapi.yml",
+    "qudos-bank-banking-payees-api-openapi.yml",
+    "qudos-bank-banking-products-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
