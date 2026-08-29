@@ -150,6 +150,9 @@ apis:
   - type: APIReference
     url: https://consumerdatastandardsaustralia.github.io/standards/
 common:
+- type: CapabilityMap
+  url: capabilities/qudos-bank-capability-edges.yml
+  name: Qudos Bank Business Capability Map
 - type: AgenticAccess
   url: agentic-access/qudos-bank-agentic-access.yml
 - type: DomainSecurity
